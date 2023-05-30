@@ -1,0 +1,71 @@
+Class Movie{
+string name
+string/enum genre;
+unsigned int durationMin;
+unsigned int yearOfPremier;
+
+}
+
+Class Room{
+unsigned int numberOfSeats;
+string Name;
+//уникалността се осигурява от class Cinema
+}
+
+
+Class Person{
+	string firstName
+	string middleName
+	string lastName
+	string birthDate
+public:
+	virtual void buyTicket(Screening* screening)=0;
+	virtual ~Person()=default;
+}
+
+Class Client : Person{
+	String/enum discountType;
+	double cashBalance
+public:	
+	voidAddMoney(double money);
+	void buyTicket(Screening* screening) override;
+}
+
+Class Worker : Person{
+	double salary
+public:
+	void buyTicket(Screening* screening) override;
+	void addMovie(const Movie& movie);
+	void addScreening();	
+}
+Class Screening{
+	vector<Person*> people;
+	Movie* film;
+	Room* room;
+	double price;
+public:
+	void makeReservation(const Person*); //проверява дали има свободно място
+	void print();
+	double getPrice();
+}
+
+class Timetable{
+	vector<Screening> screenings;
+}
+
+
+Class Cinema{
+	vector<Room> rooms;
+	double balance;
+	vector<Client> clients;
+	vector<Worker> workers;
+	Timetable timetable;
+	vector<Movie> movies;
+public:
+	void addMovie(const Movie movie);
+	void addScreening(worker id, Screening);
+	void addClient(const Client client);
+	void addWorker(const Worker worker);
+	void changeBalance();
+}
+
